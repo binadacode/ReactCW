@@ -1,0 +1,130 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "type": "House",
+      "price": 750000,
+      "bedrooms": 4,
+      "postcode": "NW1",
+      "dateAdded": "2024-10-12",
+      "shortDescription": "Spacious family house with garden",
+      "longDescription": "A beautiful 4-bedroom family home located in NW1, close to local amenities and transport links.",
+      "images": [
+        "images/prop1_1.jpg",
+        "images/prop1_2.jpg",
+        "images/prop1_3.jpg",
+        "images/prop1_4.jpg",
+        "images/prop1_5.jpg",
+        "images/prop1_6.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "Flat",
+      "price": 420000,
+      "bedrooms": 2,
+      "postcode": "E1",
+      "dateAdded": "2024-09-28",
+      "shortDescription": "Modern city flat",
+      "longDescription": "A modern 2-bedroom flat in E1, ideal for professionals.",
+      "images": [
+        "images/prop2_1.jpg",
+        "images/prop2_2.jpg",
+        "images/prop2_3.jpg",
+        "images/prop2_4.jpg",
+        "images/prop2_5.jpg",
+        "images/prop2_6.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "House",
+      "price": 980000,
+      "bedrooms": 5,
+      "postcode": "BR1",
+      "dateAdded": "2024-08-15",
+      "shortDescription": "Luxury detached house",
+      "longDescription": "A premium detached property with large living spaces and private parking.",
+      "images": [
+        "images/prop3_1.jpg",
+        "images/prop3_2.jpg",
+        "images/prop3_3.jpg",
+        "images/prop3_4.jpg",
+        "images/prop3_5.jpg",
+        "images/prop3_6.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "Flat",
+      "price": 310000,
+      "bedrooms": 1,
+      "postcode": "SW6",
+      "dateAdded": "2024-11-01",
+      "shortDescription": "Compact studio flat",
+      "longDescription": "A compact and affordable studio flat in a prime SW6 location.",
+      "images": [
+        "images/prop4_1.jpg",
+        "images/prop4_2.jpg",
+        "images/prop4_3.jpg",
+        "images/prop4_4.jpg",
+        "images/prop4_5.jpg",
+        "images/prop4_6.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "House",
+      "price": 560000,
+      "bedrooms": 3,
+      "postcode": "CR0",
+      "dateAdded": "2024-07-20",
+      "shortDescription": "Semi-detached house",
+      "longDescription": "A comfortable 3-bedroom semi-detached house perfect for families.",
+      "images": [
+        "images/prop5_1.jpg",
+        "images/prop5_2.jpg",
+        "images/prop5_3.jpg",
+        "images/prop5_4.jpg",
+        "images/prop5_5.jpg",
+        "images/prop5_6.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "Flat",
+      "price": 650000,
+      "bedrooms": 3,
+      "postcode": "SE1",
+      "dateAdded": "2024-10-05",
+      "shortDescription": "Riverside apartment",
+      "longDescription": "Stylish riverside apartment with balcony and river views.",
+      "images": [
+        "images/prop6_1.jpg",
+        "images/prop6_2.jpg",
+        "images/prop6_3.jpg",
+        "images/prop6_4.jpg",
+        "images/prop6_5.jpg",
+        "images/prop6_6.jpg"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "House",
+      "price": 880000,
+      "bedrooms": 4,
+      "postcode": "KT1",
+      "dateAdded": "2024-09-02",
+      "shortDescription": "Elegant suburban home",
+      "longDescription": "An elegant 4-bedroom suburban home with excellent transport access.",
+      "images": [
+        "images/prop7_1.jpg",
+        "images/prop7_2.jpg",
+        "images/prop7_3.jpg",
+        "images/prop7_4.jpg",
+        "images/prop7_5.jpg",
+        "images/prop7_6.jpg"
+      ]
+    }
+  ]
+}
