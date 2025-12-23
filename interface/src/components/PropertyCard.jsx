@@ -3,7 +3,9 @@ const PropertyCard = ( {property}) => {
 
       return (
         <div className="property-card">
+          <div className="property-image-wrapper">
             <img src={picture} alt={`${type} in ${location}`} className="property-image"/>
+          </div>
             <div className="property-info">
                 <h3>{type}</h3>
                 <p>{bedrooms} Bedrooms</p>
