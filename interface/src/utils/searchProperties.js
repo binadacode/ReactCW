@@ -27,7 +27,7 @@ export const searchProperties = (properties, filters) => {
       }
     }
 
-    if (filters.minBedrooms) {
+    if (filters.minBedrooms !== undefined) {
       if (property.bedrooms < filters.minBedrooms) {
         return false;
       }
