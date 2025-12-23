@@ -8,6 +8,15 @@ const toDate = (date) => {
 };
 
 export const searchProperties = (properties, filters) => {
+  const minPrice =
+    filters.minPrice !== undefined ? Number(filters.minPrice) : undefined;
+  const maxPrice =
+    filters.maxPrice !== undefined ? Number(filters.maxPrice) : undefined;
+  const minBedrooms =
+    filters.minBedrooms !== undefined ? Number(filters.minBedrooms) : undefined;
+  const maxBedrooms =
+    filters.maxBedrooms !== undefined ? Number(filters.maxBedrooms) : undefined;
+
   return properties.filter((property) => {
     if (filters.type && filters.type !== "Any") {
       if (property.type !== filters.type) {
@@ -15,26 +24,26 @@ export const searchProperties = (properties, filters) => {
       }
     }
 
-    if (filters.minPrice) {
-      if (property.price < filters.minPrice) {
+    if (minPrice !== undefined) {
+      if (property.price < minPrice) {
         return false;
       }
     }
 
-    if (filters.maxPrice) {
-      if (property.price > filters.maxPrice) {
+    if (maxPrice !== undefined) {
+      if (property.price > maxPrice) {
         return false;
       }
     }
 
-    if (filters.minBedrooms !== undefined) {
-      if (property.bedrooms < filters.minBedrooms) {
+    if (minBedrooms !== undefined) {
+      if (property.bedrooms < minBedrooms) {
         return false;
       }
     }
 
-    if (filters.maxBedrooms) {
-      if (property.bedrooms > filters.maxBedrooms) {
+    if (maxBedrooms !== undefined) {
+      if (property.bedrooms > maxBedrooms) {
         return false;
       }
     }

@@ -1,34 +1,27 @@
 import { useEffect, useState } from 'react'
-import ImageCard from './ImageCard'
+import ResultList from './ResultList'
+import { searchProperties } from '../utils/searchProperties'
 
 const Gallery = () => {
-  const [products, setProducts] = useState([])
+  const [properties, setProperties] = useState([])
+  const [results, setResults] = useState([])
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/products.json')
-      const data = await response.json()
-      setProducts(data.products)
-    }
-
-    fetchData()
+    fetch('/properties.json')
+      .then(response => response.json())
+      .then(data => {
+        setProperties(data.properties)
+        setResults(data.properties) //show all initially
+      });
   }, [])
 
-  return (
-    <div className="container">
-      <div className="all-items">
-        <h2>Available</h2>
-        <div className="gallery">
-          {products.map(product => (
-            <ImageCard key={product.id} product={product} />
-          ))}
-        </div>
-      </div>
+ 
+  
 
-      <div className="favorites">
-        <h2>Favourites</h2>
+  return (
+      <div>
+        <ResultList results={results} />
       </div>
-    </div>
   )
 }
 

@@ -54,7 +54,7 @@ describe("searchProperties", () => {
     });
     expect(results.length).toBe(2);
     expect(
-      results.every((prop) => prop.bedrooms >= 3 && prop.bedrooms <= 4)
+      results.every((prop) => prop.bedrooms >= 2 && prop.bedrooms <= 3)
     ).toBe(true);
   });
 
