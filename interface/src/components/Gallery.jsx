@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ResultList from './ResultList'
+import SearchBar from './SearchBar'
 import { searchProperties } from '../utils/searchProperties'
 
 const Gallery = () => {
@@ -15,11 +16,17 @@ const Gallery = () => {
       });
   }, [])
 
+  const handleSearch = (query) => {
+    const filteredResults = searchProperties(properties, query)
+    setResults(filteredResults)
+  }
+
  
   
 
   return (
       <div>
+        <SearchBar onSearch={handleSearch} />   
         <ResultList results={results} />
       </div>
   )

@@ -1,5 +1,6 @@
 // Converts the provided object into a JS date
 const toDate = (date) => {
+  if (!date) return null;
   return new Date(
     date.year,
     new Date(`${date.month} 1, 2000`).getMonth(),
@@ -8,6 +9,18 @@ const toDate = (date) => {
 };
 
 export const searchProperties = (properties, filters) => {
+  if (
+    !filters.location &&
+    filters.type === "Any" &&
+    !filters.minPrice &&
+    !filters.maxPrice &&
+    !filters.minBedrooms &&
+    !filters.maxBedrooms &&
+    !filters.dateFrom
+  ) {
+    return properties; //no filters applied, return all
+  }
+
   const minPrice =
     filters.minPrice !== undefined ? Number(filters.minPrice) : undefined;
   const maxPrice =
@@ -48,9 +61,9 @@ export const searchProperties = (properties, filters) => {
       }
     }
 
-    if (filters.postcode) {
-      const propertyPostcode = property.location.split(" ").pop();
-      if (!propertyPostcode.startsWith(filters.postcode.toUpperCase())) {
+    if (filters.location && filters.location.trim() !== "") {
+      const location = filters.location.toLowerCase();
+      if (!property.location.toLowerCase().includes(location)) {
         return false;
       }
     }
