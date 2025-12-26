@@ -1,3 +1,76 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: inherit;
+  background-color: #242424;
+  color: #fff;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* PROPERTY GRID */
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -15,7 +88,6 @@
   flex-direction: column;
 }
 
-
 .property-card:hover {
   transform: translateY(-4px);
 }
@@ -23,10 +95,10 @@
 .property-image-wrapper {
   width: 100%;
   height: 0;
-  padding-top: 60%; /* 3:2 Aspect Ratio for image*/
+  padding-top: 60%; /* 3:2 Aspect Ratio */
   position: relative;
   overflow: hidden;
-} 
+}
 
 .property-image {
   position: absolute;
@@ -68,49 +140,10 @@
   text-decoration: underline;
 }
 
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.tabs button {
-  padding: 0.5rem 1rem;
-  border: none;
-  background: #eee;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.tabs button.active {
-  background: #222;
-  color: #fff;
-}
-
-.tab-content {
-  margin-top: 1rem;
-}
-
-.tab-inner {
-  max-width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.tab-inner p {
-  text-align: left;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
+/* GALLERY */
 .gallery {
   max-width: 900px;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .gallery .main-image {
@@ -151,6 +184,53 @@
 .thumbnails img.active {
   border: 2px solid #222;
 }
+
+/* TABS */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #ccc;
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tabs button.active {
+  background: #222;
+  color: #fff;
+}
+
+/* TAB CONTENT */
+.tab-content {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center; /* center horizontally */
+}
+
+.tab-inner {
+  max-width: 900px; /* limits the content width */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tab-inner p {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* FLOORPLAN */
 .floorplan-img {
   max-width: 100%;
   display: block;
@@ -158,8 +238,25 @@
   object-fit: contain;
 }
 
+/* MAP */
 .map-container iframe {
-  max-width: 100%;
+  width: 80vw;       /* % of viewport width */
+  height: 70vh;      /* 70% of viewport height */
   display: block;
   margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .tabs button {
+    background: #444;
+    color: #eee;
+  }
+
+  .tabs button.active {
+    background: #646cff;
+    color: #fff;
+  }
 }
