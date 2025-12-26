@@ -1,4 +1,6 @@
-const PropertyCard = ( {property}) => {
+import { Link } from 'react-router-dom';
+
+const PropertyCard = ( {property, onFavouriteToggle, isFavourite}) => {
       const { id, type, bedrooms, price, location, picture } = property;
 
       return (
@@ -11,7 +13,20 @@ const PropertyCard = ( {property}) => {
                 <p>{bedrooms} Bedrooms</p>
                 <p>{location}</p>
                 <p>£{price.toLocaleString()}</p>
-                <a href={`/properties/${id}`}>View Details</a>
+
+                <div className='property-actions'>
+                <Link to={`/properties/${id}`} className="details-link">
+                View Details
+                </Link>
+
+                <button
+                    className={`favourite-button ${isFavourite ? 'favourited' : ''}`}
+                    onClick={() => onFavouriteToggle(id)}
+                >
+                    {isFavourite ? '★' : '☆'}
+                    
+                </button>
+                </div>
             </div>
         </div>
       );
