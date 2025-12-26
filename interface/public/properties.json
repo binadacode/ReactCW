@@ -6,31 +6,37 @@
       "bedrooms": 3,
       "price": 750000,
       "tenure": "Freehold",
-      "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-      "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-      "picture": "images/proppic1.jpeg",
-      "url": "properties/prop1.html",
-      "added": {
-        "month": "October",
-        "day": 12,
-        "year": 2022
-      }
+      "description": "This attractive three bedroom semi-detached family home is set within a quiet residential neighbourhood and offers a perfect balance of comfort, style, and practicality. The property features bright and spacious living areas with modern interior finishes throughout, making it ideal for families or professionals. A well-maintained private garden provides an excellent space for outdoor relaxation and entertaining, while the layout ensures privacy and functionality across all rooms.",
+      "location": "Nawala, Colombo 05, Sri Lanka",
+      "pictures": [
+        "images/proppic1_1.jpg",
+        "images/proppic1_2.jpg",
+        "images/proppic1_3.jpg",
+        "images/proppic1_4.jpg",
+        "images/proppic1_5.jpg",
+        "images/proppic1_6.jpg"
+      ],
+      "floorplan": "floorplans/prop1-floorplan.jpg",
+      "added": { "month": "October", "day": 12, "year": 2022 }
     },
     {
       "id": "prop2",
-      "type": "Flat",
+      "type": "House",
       "bedrooms": 2,
       "price": 399995,
       "tenure": "Freehold",
-      "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher and a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden...",
-      "location": "Crofton Road Orpington BR6",
-      "picture": "images/proppic2.jpeg",
-      "url": "properties/prop2.html",
-      "added": {
-        "month": "September",
-        "day": 14,
-        "year": 2022
-      }
+      "description": "This modern two bedroom apartment offers stylish open-plan living designed to maximise space and natural light. The contemporary kitchen seamlessly flows into the living and dining area, creating a welcoming environment for everyday living and entertaining. A private balcony provides a pleasant outdoor retreat, while the overall design caters perfectly to young professionals, couples, or first-time buyers seeking a convenient urban lifestyle.",
+      "location": "Rajagiriya, Sri Lanka",
+      "pictures": [
+        "images/proppic2_1.jpg",
+        "images/proppic2_2.jpg",
+        "images/proppic2_3.jpg",
+        "images/proppic2_4.jpg",
+        "images/proppic2_5.jpg",
+        "images/proppic2_6.jpg"
+      ],
+      "floorplan": "floorplans/prop2-floorplan.jpg",
+      "added": { "month": "September", "day": 14, "year": 2022 }
     },
     {
       "id": "prop3",
@@ -38,47 +44,56 @@
       "bedrooms": 4,
       "price": 925000,
       "tenure": "Freehold",
-      "description": "A spacious four bedroom detached family home offering generous living accommodation and a private garden, located close to excellent transport links.",
-      "location": "High Street, Bromley BR1",
-      "picture": "images/proppic3.jpeg",
-      "url": "properties/prop3.html",
-      "added": {
-        "month": "August",
-        "day": 3,
-        "year": 2023
-      }
+      "description": "This spacious four bedroom detached house is ideally suited for larger families seeking comfort and privacy. The property boasts generous room sizes, multiple living areas, and a thoughtfully designed layout that supports both family life and entertaining guests. Outside, a private garden and dedicated parking area add to the convenience, while the peaceful surroundings make this home a perfect long-term investment.",
+      "location": "Kandy, Central Province, Sri Lanka",
+      "pictures": [
+        "images/proppic3_1.jpg",
+        "images/proppic3_2.jpg",
+        "images/proppic3_3.jpg",
+        "images/proppic3_4.jpg",
+        "images/proppic3_5.jpg",
+        "images/proppic3_6.jpg"
+      ],
+      "floorplan": "floorplans/prop3-floorplan.jpg",
+      "added": { "month": "August", "day": 3, "year": 2023 }
     },
     {
       "id": "prop4",
-      "type": "Flat",
+      "type": "House",
       "bedrooms": 1,
       "price": 285000,
       "tenure": "Leasehold",
-      "description": "Modern one bedroom apartment ideal for first-time buyers or investors, situated in a popular residential area.",
-      "location": "Deptford High Street SE8",
-      "picture": "images/proppic4.jpeg",
-      "url": "properties/prop4.html",
-      "added": {
-        "month": "January",
-        "day": 18,
-        "year": 2024
-      }
+      "description": "This contemporary one bedroom apartment has been designed with modern city living in mind. Featuring sleek finishes, efficient use of space, and a stylish interior layout, the property is ideal for professionals or investors. Its central location provides easy access to transport links, workplaces, and leisure facilities, making it a highly desirable urban residence.",
+      "location": "Bambalapitiya, Colombo 04, Sri Lanka",
+      "pictures": [
+        "images/proppic4_1.jpg",
+        "images/proppic4_2.jpg",
+        "images/proppic4_3.jpg",
+        "images/proppic4_4.jpg",
+        "images/proppic4_5.jpg",
+        "images/proppic4_6.jpg"
+      ],
+      "floorplan": "floorplans/prop4-floorplan.jpeg",
+      "added": { "month": "January", "day": 18, "year": 2024 }
     },
     {
       "id": "prop5",
-      "type": "House",
+      "type": "Flat",
       "bedrooms": 5,
       "price": 1200000,
       "tenure": "Freehold",
-      "description": "An impressive five bedroom detached property featuring a large driveway, double garage and beautifully landscaped garden.",
-      "location": "Oak Avenue, Chislehurst BR7",
-      "picture": "images/proppic5.jpeg",
-      "url": "properties/prop5.html",
-      "added": {
-        "month": "June",
-        "day": 7,
-        "year": 2023
-      }
+      "description": "This luxury five bedroom villa represents premium living at its finest, combining elegant architecture with high-end interior finishes. The property features expansive living spaces, beautifully designed bedrooms, and large windows that allow natural light to flood throughout. A landscaped garden and private swimming pool create a resort-style atmosphere, making this home ideal for entertaining and relaxed family living.",
+      "location": "Mount Lavinia, Sri Lanka",
+      "pictures": [
+        "images/proppic5_1.jpg",
+        "images/proppic5_2.jpg",
+        "images/proppic5_3.jpg",
+        "images/proppic5_4.jpg",
+        "images/proppic5_5.jpg",
+        "images/proppic5_6.jpg"
+      ],
+      "floorplan": "floorplans/prop5-floorplan.png",
+      "added": { "month": "June", "day": 7, "year": 2023 }
     },
     {
       "id": "prop6",
@@ -86,47 +101,56 @@
       "bedrooms": 3,
       "price": 610000,
       "tenure": "Leasehold",
-      "description": "Stylish three bedroom riverside apartment offering modern interiors and excellent views.",
-      "location": "Albert Embankment SE1",
-      "picture": "images/proppic6.jpeg",
-      "url": "properties/prop6.html",
-      "added": {
-        "month": "March",
-        "day": 22,
-        "year": 2024
-      }
+      "description": "This stylish three bedroom apartment offers stunning city views alongside a modern and functional interior design. The open living areas are complemented by contemporary finishes and quality fittings throughout. Residents benefit from modern facilities and a convenient location close to shopping, dining, and business districts, making this property an excellent choice for urban living.",
+      "location": "Colombo 03, Sri Lanka",
+      "pictures": [
+        "images/proppic6_1.jpg",
+        "images/proppic6_2.jpg",
+        "images/proppic6_3.jpg",
+        "images/proppic6_4.jpg",
+        "images/proppic6_5.jpg",
+        "images/proppic6_6.jpg"
+      ],
+      "floorplan": "floorplans/prop6-floorplan.jpg",
+      "added": { "month": "March", "day": 22, "year": 2024 }
     },
     {
       "id": "prop7",
-      "type": "House",
+      "type": "Flat",
       "bedrooms": 2,
       "price": 475000,
       "tenure": "Freehold",
-      "description": "Charming two bedroom cottage with period features, located in a quiet residential street close to local amenities.",
-      "location": "Station Road, Sutton SM1",
-      "picture": "images/proppic7.jpeg",
-      "url": "properties/prop7.html",
-      "added": {
-        "month": "November",
-        "day": 9,
-        "year": 2023
-      }
+      "description": "This charming two bedroom house is situated in a quiet and friendly residential area, offering a relaxed lifestyle away from busy city centres. The property features well-proportioned rooms, a comfortable living space, and practical design throughout. It is ideally suited for small families, couples, or buyers seeking a peaceful yet well-connected home.",
+      "location": "Galle, Southern Province, Sri Lanka",
+      "pictures": [
+        "images/proppic7_1.jpg",
+        "images/proppic7_2.jpg",
+        "images/proppic7_3.jpg",
+        "images/proppic7_4.jpg",
+        "images/proppic7_5.jpg",
+        "images/proppic7_6.jpg"
+      ],
+      "floorplan": "floorplans/prop7-floorplan.jpg",
+      "added": { "month": "November", "day": 9, "year": 2023 }
     },
     {
       "id": "prop8",
       "type": "Flat",
-      "bedrooms": 2,
-      "price": 540000,
-      "tenure": "Leasehold",
-      "description": "Well-presented two bedroom apartment located close to Canary Wharf, offering excellent transport links and modern living spaces.",
-      "location": "Marsh Wall, Canary Wharf E14",
-      "picture": "images/proppic8.jpeg",
-      "url": "properties/prop8.html",
-      "added": {
-        "month": "February",
-        "day": 11,
-        "year": 2024
-      }
+      "bedrooms": 4,
+      "price": 820000,
+      "tenure": "Freehold",
+      "description": "This premium four bedroom penthouse flat offers an exceptional standard of living with breathtaking panoramic ocean views. Finished to a high specification throughout, the property includes spacious living areas, elegant bedrooms, and high-end materials. Large windows and private outdoor spaces enhance the sense of luxury, making this penthouse an outstanding choice for buyers seeking exclusivity and comfort.",
+      "location": "Colombo 02, Sri Lanka",
+      "pictures": [
+        "images/proppic8_1.png",
+        "images/proppic8_2.png",
+        "images/proppic8_3.png",
+        "images/proppic8_4.png",
+        "images/proppic8_5.png",
+        "images/proppic8_6.png"
+      ],
+      "floorplan": "floorplans/prop8-floorplan.jpg",
+      "added": { "month": "February", "day": 5, "year": 2024 }
     }
   ]
 }
