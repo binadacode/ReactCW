@@ -12,15 +12,13 @@ const PropertyPage = () => {
     fetch("/properties.json")
       .then((res) => res.json())
       .then((data) => {
-        // Find property by id
         const foundProperty = data.properties.find(
           (prop) => prop.id.toString() === id
         );
         setProperty(foundProperty);
 
-        // Set first image as default
         if (foundProperty?.pictures?.length > 0) {
-          setActiveImage(`/${foundProperty.pictures[0]}`); // add leading slash
+          setActiveImage(`/${foundProperty.pictures[0]}`);
         }
       })
       .catch((err) => console.error("Error fetching property data:", err))
@@ -31,7 +29,6 @@ const PropertyPage = () => {
   if (!property) return <p>Property not found.</p>;
 
   const { type, price, location, description, pictures = [] } = property;
-
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     location
   )}&output=embed`;
@@ -53,7 +50,7 @@ const PropertyPage = () => {
           {pictures.map((pic, index) => (
             <img
               key={index}
-              src={`/${pic}`} // add leading slash for correct path
+              src={`/${pic}`}
               alt={`Thumbnail ${index + 1} of ${type} in ${location}`}
               className={activeImage === `/${pic}` ? "active" : ""}
               onClick={() => setActiveImage(`/${pic}`)}
@@ -91,33 +88,41 @@ const PropertyPage = () => {
         </button>
       </div>
 
+      {/* TAB CONTENT */}
       <div className="tab-content">
-        {activeTab === "description" && <p>{description}</p>}
+        {activeTab === "description" && (
+          <div className="tab-inner">
+            <p>{description}</p>
+          </div>
+        )}
 
         {activeTab === "floorplan" && (
-          <div className="floorplan">
+          <div className="tab-inner">
             {property.floorplan ? (
               <img
                 src={`/${property.floorplan}`}
                 alt="Floor Plan"
-                style={{ width: "100%", maxWidth: "800px" }}
+                className="floorplan-img"
               />
             ) : (
               <p>No floor plan available.</p>
             )}
           </div>
         )}
+
         {activeTab === "map" && (
-          <div className="map-container" style={{ marginTop: "1rem" }}>
-            <iframe
-              title="Property Location Map"
-              src={mapSrc}
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe>
+          <div className="tab-inner">
+            <div className="map-container">
+              <iframe
+                title="Property Location Map"
+                src={mapSrc}
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
           </div>
         )}
       </div>
