@@ -93,7 +93,13 @@ const PropertyPage = () => {
 
       <div className="tab-content">
         <div className="tab-inner">
-          {activeTab === "description" && <p>{description}</p>}
+          {activeTab === "description" && (
+            <>
+              {description.split("\n\n").map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </>
+          )}
 
           {activeTab === "floorplan" && (
             <div className="floorplan">

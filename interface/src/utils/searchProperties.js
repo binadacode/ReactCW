@@ -1,34 +1,35 @@
 // Converts the provided object into a JS date
-const toDate = (date) => {
+const toTimestamp = (date) => {
   if (!date) return null;
-  return new Date(
-    date.year,
-    new Date(`${date.month} 1, 2000`).getMonth(),
-    date.day
-  );
+
+  const monthIndex = new Date(`${date.month} 1, 2000`).getMonth();
+  return new Date(date.year, monthIndex, date.day).getTime();
 };
 
 export const searchProperties = (properties, filters) => {
-  if (
-    !filters.location &&
-    filters.type === "Any" &&
-    !filters.minPrice &&
-    !filters.maxPrice &&
-    !filters.minBedrooms &&
-    !filters.maxBedrooms &&
-    !filters.dateFrom
-  ) {
-    return properties; //no filters applied, return all
-  }
-
   const minPrice =
-    filters.minPrice !== undefined ? Number(filters.minPrice) : undefined;
+    filters.minPrice !== "" && filters.minPrice !== undefined
+      ? Number(filters.minPrice)
+      : null;
+
   const maxPrice =
-    filters.maxPrice !== undefined ? Number(filters.maxPrice) : undefined;
+    filters.maxPrice !== "" && filters.maxPrice !== undefined
+      ? Number(filters.maxPrice)
+      : null;
+
   const minBedrooms =
-    filters.minBedrooms !== undefined ? Number(filters.minBedrooms) : undefined;
+    filters.minBedrooms !== "" && filters.minBedrooms !== undefined
+      ? Number(filters.minBedrooms)
+      : null;
+
   const maxBedrooms =
-    filters.maxBedrooms !== undefined ? Number(filters.maxBedrooms) : undefined;
+    filters.maxBedrooms !== "" && filters.maxBedrooms !== undefined
+      ? Number(filters.maxBedrooms)
+      : null;
+
+  const dateFrom = filters.dateFrom
+    ? new Date(filters.dateFrom).getTime()
+    : null;
 
   return properties.filter((property) => {
     if (filters.type && filters.type !== "Any") {
@@ -37,25 +38,25 @@ export const searchProperties = (properties, filters) => {
       }
     }
 
-    if (minPrice !== undefined) {
+    if (minPrice !== null) {
       if (property.price < minPrice) {
         return false;
       }
     }
 
-    if (maxPrice !== undefined) {
+    if (maxPrice !== null) {
       if (property.price > maxPrice) {
         return false;
       }
     }
 
-    if (minBedrooms !== undefined) {
+    if (minBedrooms !== null) {
       if (property.bedrooms < minBedrooms) {
         return false;
       }
     }
 
-    if (maxBedrooms !== undefined) {
+    if (maxBedrooms !== null) {
       if (property.bedrooms > maxBedrooms) {
         return false;
       }
@@ -68,9 +69,9 @@ export const searchProperties = (properties, filters) => {
       }
     }
 
-    if (filters.dateFrom) {
-      const propertyDate = toDate(property.added);
-      if (propertyDate < filters.dateFrom) {
+    if (dateFrom !== null) {
+      const propertyDate = toTimestamp(property.added);
+      if (propertyDate < dateFrom) {
         return false;
       }
     }

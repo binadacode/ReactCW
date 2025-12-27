@@ -247,6 +247,10 @@ button:focus-visible {
   margin-bottom: 10px;
 }
 
+.description {
+  white-space: pre-line;
+}
+
 
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
@@ -258,5 +262,88 @@ button:focus-visible {
   .tabs button.active {
     background: #646cff;
     color: #fff;
+  }
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+/* iPad Landscape and below (≤1024px) */
+@media (max-width: 1024px) {
+  .results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .gallery .main-image,
+  .main-image img {
+    height: 350px;
+  }
+  .thumbnails img {
+    width: 70px;
+    height: 55px;
+  }
+  .tab-inner {
+    padding: 0 1rem;
+  }
+  .map-container iframe {
+    width: 90vw;
+    height: 50vh;
+  }
+}
+
+/* Tablet portrait and large mobiles (≤768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5em;
+  }
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery .main-image,
+  .main-image img {
+    height: 300px;
+  }
+  .thumbnails img {
+    width: 60px;
+    height: 50px;
+  }
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  .tabs button {
+    width: 80%;
+    margin-bottom: 0.5rem;
+  }
+  .tab-inner p {
+    font-size: 0.95rem;
+  }
+  .map-container iframe {
+    width: 95vw;
+    height: 40vh;
+  }
+}
+
+/* Mobile (≤480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em;
+  }
+  .gallery .main-image,
+  .main-image img {
+    height: 220px;
+  }
+  .thumbnails {
+    gap: 0.4rem;
+  }
+  .thumbnails img {
+    width: 50px;
+    height: 40px;
+  }
+  button {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+  .map-container iframe {
+    width: 100vw;
+    height: 35vh;
   }
 }
