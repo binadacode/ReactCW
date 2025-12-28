@@ -1,35 +1,73 @@
-import { useEffect, useState } from 'react'
-import ResultList from './ResultList'
-import SearchBar from './SearchBar'
-import { searchProperties } from '../utils/searchProperties'
+import { useEffect, useState } from "react";
+import ResultList from "./ResultList";
+import SearchBar from "./SearchBar";
+import { searchProperties } from "../utils/searchProperties";
 
 const Gallery = () => {
-  const [properties, setProperties] = useState([])
-  const [results, setResults] = useState([])
+  const [properties, setProperties] = useState([]);
+  const [results, setResults] = useState([]);
+  const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
-    fetch('/properties.json')
-      .then(response => response.json())
-      .then(data => {
-        setProperties(data.properties)
-        setResults(data.properties) //show all initially
+    fetch("/properties.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setProperties(data.properties);
+        setResults(data.properties);
       });
-  }, [])
+  }, []);
 
   const handleSearch = (query) => {
-    const filteredResults = searchProperties(properties, query)
-    setResults(filteredResults)
-  }
+    setResults(searchProperties(properties, query));
+  };
 
- 
-  
+  const toggleFavourite = (id) => {
+    setFavourites((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+    );
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const id = e.dataTransfer.getData("propertyId");
+    if (!favourites.includes(id)) {
+      setFavourites((prev) => [...prev, id]);
+    }
+  };
 
   return (
-      <div>
-        <SearchBar onSearch={handleSearch} />   
-        <ResultList results={results} />
+    <div className="gallery-layout">
+      {/* MAIN CONTENT (LEFT) */}
+      <div className="gallery-main">
+        <SearchBar onSearch={handleSearch} />
+        <ResultList
+          results={results}
+          favourites={favourites}
+          onFavouriteToggle={toggleFavourite}
+        />
       </div>
-  )
-}
 
-export default Gallery
+      {/* SIDEBAR (RIGHT) */}
+      <aside
+        className="favourites-sidebar"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={handleDrop}
+      >
+        <h3>Favourites ({favourites.length})</h3>
+
+        {favourites.length === 0 && <p>Drag properties here ⭐</p>}
+
+        {favourites.map((fid) => {
+          const prop = properties.find((p) => p.id === fid);
+          return (
+            <div key={fid} className="favourite-item">
+              {prop?.type} – {prop?.location}
+            </div>
+          );
+        })}
+      </aside>
+    </div>
+  );
+};
+
+export default Gallery;

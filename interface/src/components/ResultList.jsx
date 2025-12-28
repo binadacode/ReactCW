@@ -1,19 +1,25 @@
 import { Link } from "react-router-dom";
 import PropertyCard from "./PropertyCard";
 
-const ResultList = ({ results, favourites = [], toggleFavourites }) => {
-  if (results.length === 0) {
-    return <p>No properties found.</p>;
-  }
+const ResultList = ({ results, favourites = [], onFavouriteToggle }) => {
+  if (!results || results.length === 0) return <p>No properties found.</p>;
+
   return (
     <div className="results-grid">
       {results.map((property) => (
-        <Link key={property.id} to={`/property/${property.id}`}>
+        <Link
+          key={property.id}
+          to={`/property/${property.id}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <PropertyCard
-            key={property.id}
             property={property}
             isFavourite={favourites.includes(property.id)}
-            onFavouriteToggle={toggleFavourites}
+            onFavouriteToggle={(id, e) => {
+              e.preventDefault(); // stop Link navigation
+              e.stopPropagation();
+              onFavouriteToggle(id);
+            }}
           />
         </Link>
       ))}
