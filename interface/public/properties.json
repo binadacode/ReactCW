@@ -8,6 +8,7 @@
       "tenure": "Freehold",
       "description": "3-bedroom semi-detached family home\n\nSituated within a quiet residential neighbourhood, this attractive property offers a perfect balance of comfort, style, and practicality.\n\nThe home features bright and spacious living areas with modern interior finishes throughout, making it ideal for families or professionals.\n\nA well-maintained private garden provides excellent space for outdoor relaxation and entertaining, while the thoughtful layout ensures privacy and functionality across all rooms.",
       "location": "Petts Wood Road, Petts Wood, Orpington BR5",
+      "postcode": "BR5",
       "pictures": [
         "images/proppic1_1.jpg",
         "images/proppic1_2.jpg",
@@ -27,6 +28,7 @@
       "tenure": "Freehold",
       "description": "2-bedroom modern apartment\n\nThis contemporary apartment offers stylish open-plan living designed to maximise space and natural light.\n\nThe modern kitchen flows seamlessly into the living and dining area, creating a welcoming environment for everyday living and entertaining.\n\nA private balcony provides a pleasant outdoor retreat, making this property ideal for young professionals, couples, or first-time buyers seeking an urban lifestyle.",
       "location": "Crofton Road Orpington BR6",
+      "postcode": "BR6",
       "pictures": [
         "images/proppic2_1.jpg",
         "images/proppic2_2.jpg",
@@ -46,6 +48,7 @@
       "tenure": "Freehold",
       "description": "4-bedroom detached family house\n\nThis spacious detached property is ideally suited for larger families seeking comfort, space, and privacy.\n\nThe home boasts generous room sizes, multiple living areas, and a thoughtfully designed layout that supports both family life and entertaining guests.\n\nOutside, a private garden and dedicated parking area add to the overall convenience, while the peaceful surroundings make this an excellent long-term investment.",
       "location": "High Street, Bromley BR1",
+      "postcode": "BR1",
       "pictures": [
         "images/proppic3_1.jpg",
         "images/proppic3_2.jpg",
@@ -65,6 +68,7 @@
       "tenure": "Leasehold",
       "description": "1-bedroom contemporary apartment\n\nDesigned with modern city living in mind, this stylish apartment offers sleek finishes and efficient use of space throughout.\n\nThe interior layout is both practical and visually appealing, making it ideal for professionals or investors.\n\nIts central location provides easy access to transport links, workplaces, and leisure facilities, making this a highly desirable urban residence.",
       "location": "Deptford High Street SE8",
+      "postcode": "SE8",
       "pictures": [
         "images/proppic4_1.jpg",
         "images/proppic4_2.jpg",
@@ -84,6 +88,7 @@
       "tenure": "Freehold",
       "description": "5-bedroom luxury villa\n\nThis exceptional villa represents premium living at its finest, combining elegant architecture with high-end interior finishes.\n\nThe property features expansive living spaces, beautifully designed bedrooms, and large windows that allow natural light to flood throughout.\n\nA landscaped garden and private swimming pool create a resort-style atmosphere, making this home ideal for entertaining and relaxed family living.",
       "location": "Oak Avenue, Chislehurst BR7",
+      "postcode": "BR7",
       "pictures": [
         "images/proppic5_1.jpg",
         "images/proppic5_2.jpg",
@@ -103,6 +108,7 @@
       "tenure": "Leasehold",
       "description": "3-bedroom stylish apartment\n\nThis modern apartment offers stunning city views alongside a contemporary and functional interior design.\n\nThe open-plan living areas are complemented by quality fittings and stylish finishes throughout.\n\nResidents benefit from modern facilities and a convenient location close to shopping, dining, and business districts, making this an excellent choice for urban living.",
       "location": "Albert Embankment SE1",
+      "postcode": "SE1",
       "pictures": [
         "images/proppic6_1.jpg",
         "images/proppic6_2.jpg",
@@ -122,6 +128,7 @@
       "tenure": "Freehold",
       "description": "2-bedroom charming family home\n\nSituated in a quiet and friendly residential area, this charming home offers a relaxed lifestyle away from busy city centres.\n\nThe property features well-proportioned rooms, a comfortable living space, and a practical layout suitable for everyday living.\n\nIt is ideally suited for small families, couples, or buyers seeking a peaceful yet well-connected home.",
       "location": "Station Road, Sutton SM1",
+      "postcode": "SM1",
       "pictures": [
         "images/proppic7_1.jpg",
         "images/proppic7_2.jpg",
@@ -141,6 +148,7 @@
       "tenure": "Freehold",
       "description": "4-bedroom luxury penthouse flat\n\nThis premium penthouse offers an exceptional standard of living with breathtaking panoramic views.\n\nFinished to a high specification throughout, the property includes spacious living areas, elegant bedrooms, and high-end materials.\n\nLarge windows and private outdoor spaces enhance the sense of luxury, making this home an outstanding choice for buyers seeking exclusivity and comfort.",
       "location": "Marsh Wall, Canary Wharf E14",
+      "postcode": "E14",
       "pictures": [
         "images/proppic8_1.png",
         "images/proppic8_2.png",
