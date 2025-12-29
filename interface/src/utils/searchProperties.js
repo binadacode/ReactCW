@@ -68,10 +68,9 @@ export const searchProperties = (properties, filters) => {
       const filterPostcode = filters.location.trim().toLowerCase();
       const propertyPostcode = property.postcode.trim().toLowerCase();
 
-      if (!propertyPostcode.startsWith(filterPostcode)) {
-        console.log(
-          `Property ${property.id} filtered out by postcode: ${filterPostcode}`
-        );
+      const regex = new RegExp(`\\b${filterPostcode}$`, "i");
+      if (!regex.test(propertyPostcode)) {
+        console.log(`Property ${property.id} filtered out by location`);
         return false;
       }
     }

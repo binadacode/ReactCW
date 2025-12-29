@@ -1,4 +1,4 @@
-import { descrive, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { searchProperties } from "./searchProperties.js";
 
 //Mock data for testing
@@ -9,6 +9,7 @@ const properties = [
     bedrooms: 3,
     price: 750000,
     location: "Petts Wood Road Orpington BR5",
+    postcode: "BR5",
     added: { month: "October", day: 12, year: 2022 },
   },
   {
@@ -17,6 +18,7 @@ const properties = [
     bedrooms: 2,
     price: 399995,
     location: "Crofton Road Orpington BR6",
+    postcode: "BR6",
     added: { month: "September", day: 14, year: 2022 },
   },
   {
@@ -25,6 +27,7 @@ const properties = [
     bedrooms: 4,
     price: 925000,
     location: "High Street Bromley BR1",
+    postcode: "BR1",
     added: { month: "August", day: 3, year: 2023 },
   },
 ];
@@ -59,7 +62,7 @@ describe("searchProperties", () => {
   });
 
   it("filters by postcode", () => {
-    const results = searchProperties(properties, { postcode: "BR1" });
+    const results = searchProperties(properties, { location: "BR1" });
     expect(results.length).toBe(1);
     expect(results[0].location.endsWith("BR1")).toBe(true);
   });

@@ -8,6 +8,10 @@ const Gallery = () => {
   const [results, setResults] = useState([]);
   const [favourites, setFavourites] = useState([]);
 
+  //drag-out helpers
+  const [draggedFavourite, setDraggedFavourite] = useState(null);
+  const [droppedInsideFavs, setDroppedInsideFavs] = useState(false);
+
   useEffect(() => {
     fetch("/properties.json")
       .then((res) => res.json())
@@ -35,6 +39,10 @@ const Gallery = () => {
     }
   };
 
+  const removeFavourite = (id) => {
+    setFavourites((prev) => prev.filter((f) => f !== id));
+  };
+
   return (
     <div className="gallery-layout">
       {/* MAIN CONTENT (LEFT) */}
@@ -51,7 +59,10 @@ const Gallery = () => {
       <aside
         className="favourites-sidebar"
         onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
+        onDrop={(e) => {
+          handleDrop(e);
+          setDroppedInsideFavs(true);
+        }}
       >
         <h3>Favourites ({favourites.length})</h3>
 
@@ -59,9 +70,31 @@ const Gallery = () => {
 
         {favourites.map((fid) => {
           const prop = properties.find((p) => p.id === fid);
+
           return (
-            <div key={fid} className="favourite-item">
+            <div
+              key={fid}
+              className="favourite-item"
+              draggable
+              onDragStart={() => {
+                setDraggedFavourite(fid);
+                setDroppedInsideFavs(false);
+              }}
+              onDragEnd={() => {
+                // if dropEffect is none it was dropped outside
+                if (!droppedInsideFavs) {
+                  removeFavourite(draggedFavourite);
+                }
+                setDraggedFavourite(null);
+              }}
+            >
               {prop?.type} – {prop?.location}
+              <button
+                className="remove-fav-btn"
+                onClick={() => removeFavourite(fid)}
+              >
+                ❌
+              </button>
             </div>
           );
         })}
