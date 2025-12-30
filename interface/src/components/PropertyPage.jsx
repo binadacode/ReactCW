@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ImageGallery from "../components/ImageGallery";
 
 const PropertyPage = () => {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-  const [activeImage, setActiveImage] = useState(null);
   const [activeTab, setActiveTab] = useState("description");
   const [loading, setLoading] = useState(true);
 
@@ -17,11 +17,6 @@ const PropertyPage = () => {
           (prop) => prop.id.toString() === id
         );
         setProperty(foundProperty);
-
-        // Set first image as default
-        if (foundProperty?.pictures?.length > 0) {
-          setActiveImage(`/${foundProperty.pictures[0]}`); // add leading slash
-        }
       })
       .catch((err) => console.error("Error fetching property data:", err))
       .finally(() => setLoading(false));
@@ -30,7 +25,14 @@ const PropertyPage = () => {
   if (loading) return <p>Loading property...</p>;
   if (!property) return <p>Property not found.</p>;
 
-  const { type, price, location, description, pictures = [] } = property;
+  const {
+    type,
+    price,
+    location,
+    description,
+    pictures = [],
+    floorplan,
+  } = property;
 
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     location
@@ -40,26 +42,7 @@ const PropertyPage = () => {
     <div className="property-page">
       {/* GALLERY */}
       <div className="gallery">
-        <div className="main-image">
-          {activeImage && (
-            <img
-              src={activeImage}
-              alt={`Main view of ${type} in ${location}`}
-            />
-          )}
-        </div>
-
-        <div className="thumbnails">
-          {pictures.map((pic, index) => (
-            <img
-              key={index}
-              src={`/${pic}`} // add leading slash for correct path
-              alt={`Thumbnail ${index + 1} of ${type} in ${location}`}
-              className={activeImage === `/${pic}` ? "active" : ""}
-              onClick={() => setActiveImage(`/${pic}`)}
-            />
-          ))}
-        </div>
+        <ImageGallery images={pictures} />
       </div>
 
       {/* PROPERTY INFO */}

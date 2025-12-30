@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 
 const PropertyCard = ({ property, isFavourite, onFavouriteToggle }) => {
-  const { id, type, bedrooms, price, location, pictures } = property;
+  const { id, type, bedrooms, price, location, pictures, description } =
+    property;
+
+  const shortDescription = description
+    ? description.split("\n")[0]
+    : "No description available.";
 
   return (
     <div
@@ -23,9 +28,12 @@ const PropertyCard = ({ property, isFavourite, onFavouriteToggle }) => {
 
       <div className="property-info">
         <h3>{type}</h3>
+
+        <p className="property-short-description">{shortDescription}</p>
         <p>{bedrooms} Bedrooms</p>
         <p>{location}</p>
-        <p>£{price.toLocaleString()}</p>
+
+        <p className="property-price">£{price.toLocaleString()}</p>
 
         <div className="property-actions">
           <Link to={`/property/${id}`} className="details-link">
