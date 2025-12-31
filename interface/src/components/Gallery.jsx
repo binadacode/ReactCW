@@ -43,6 +43,10 @@ const Gallery = () => {
     setFavourites((prev) => prev.filter((f) => f !== id));
   };
 
+  const clearFavourites = () => {
+    setFavourites([]);
+  };
+
   return (
     <div className="gallery-layout">
       {/* MAIN CONTENT (LEFT) */}
@@ -66,6 +70,12 @@ const Gallery = () => {
       >
         <h3>Favourites ({favourites.length})</h3>
 
+        {favourites.length > 0 && (
+          <button className="clear-favs-btn" onClick={clearFavourites}>
+            Clear All
+          </button>
+        )}
+
         {favourites.length === 0 && <p>Drag properties here ⭐</p>}
 
         {favourites.map((fid) => {
@@ -81,7 +91,6 @@ const Gallery = () => {
                 setDroppedInsideFavs(false);
               }}
               onDragEnd={() => {
-                // if dropEffect is none it was dropped outside
                 if (!droppedInsideFavs) {
                   removeFavourite(draggedFavourite);
                 }

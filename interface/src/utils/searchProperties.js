@@ -1,13 +1,13 @@
-// Converts the provided object into a JS timestamp
+// Converts the provided { month, day, year } object into a JS timestamp
 const toTimestamp = (date) => {
   if (!date) return null;
+
   const monthIndex = new Date(`${date.month} 1, 2000`).getMonth();
   return new Date(date.year, monthIndex, date.day).getTime();
 };
 
 export const searchProperties = (properties, filters) => {
-  console.log("Filters received:", filters);
-
+  // Convert numeric filters safely
   const minPrice =
     filters.minPrice !== "" && filters.minPrice !== undefined
       ? Number(filters.minPrice)
@@ -28,63 +28,61 @@ export const searchProperties = (properties, filters) => {
       ? Number(filters.maxBedrooms)
       : null;
 
+  // Convert date inputs from search form
   const dateFrom = filters.dateFrom
     ? new Date(filters.dateFrom).getTime()
     : null;
 
-  return properties.filter((property) => {
-    console.log("Checking property:", property.id);
+  const dateTo = filters.dateTo ? new Date(filters.dateTo).getTime() : null;
 
-    // Type filter
+  return properties.filter((property) => {
+    // TYPE FILTER
     if (filters.type && filters.type !== "Any") {
       if (property.type !== filters.type) {
-        console.log(`Property ${property.id} filtered out by type`);
         return false;
       }
     }
 
-    // Price filters
+    // PRICE FILTERS
     if (minPrice !== null && property.price < minPrice) {
-      console.log(`Property ${property.id} filtered out by minPrice`);
       return false;
     }
+
     if (maxPrice !== null && property.price > maxPrice) {
-      console.log(`Property ${property.id} filtered out by maxPrice`);
       return false;
     }
 
-    // Bedrooms filters
+    // BEDROOM FILTERS
     if (minBedrooms !== null && property.bedrooms < minBedrooms) {
-      console.log(`Property ${property.id} filtered out by minBedrooms`);
-      return false;
-    }
-    if (maxBedrooms !== null && property.bedrooms > maxBedrooms) {
-      console.log(`Property ${property.id} filtered out by maxBedrooms`);
       return false;
     }
 
-    // Postcode filter (using filters.location)
+    if (maxBedrooms !== null && property.bedrooms > maxBedrooms) {
+      return false;
+    }
+
+    // LOCATION / POSTCODE FILTER
     if (filters.location && filters.location.trim() !== "") {
       const filterPostcode = filters.location.trim().toLowerCase();
       const propertyPostcode = property.postcode.trim().toLowerCase();
 
       const regex = new RegExp(`\\b${filterPostcode}$`, "i");
       if (!regex.test(propertyPostcode)) {
-        console.log(`Property ${property.id} filtered out by location`);
         return false;
       }
     }
 
-    // Date filter
-    if (dateFrom !== null) {
-      const propertyDate = toTimestamp(property.added);
-      if (propertyDate < dateFrom) {
-        console.log(`Property ${property.id} filtered out by date`);
-        return false;
-      }
+    // DATE ADDED FILTER
+    const propertyDate = toTimestamp(property.added);
+
+    if (dateFrom !== null && propertyDate < dateFrom) {
+      return false;
     }
 
-    console.log(`Property matches all filters: ${property.id}`);
+    if (dateTo !== null && propertyDate > dateTo) {
+      return false;
+    }
+
     return true;
   });
 };
