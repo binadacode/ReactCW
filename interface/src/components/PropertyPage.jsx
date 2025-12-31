@@ -12,7 +12,6 @@ const PropertyPage = () => {
     fetch("/properties.json")
       .then((res) => res.json())
       .then((data) => {
-        // Find property by id
         const foundProperty = data.properties.find(
           (prop) => prop.id.toString() === id
         );
@@ -53,64 +52,67 @@ const PropertyPage = () => {
       </div>
 
       {/* TABS */}
-      <div className="tabs">
-        <button
-          className={activeTab === "description" ? "active" : ""}
+      <div className="tabs-container">
+        <div
+          className={`tab ${activeTab === "description" ? "active" : ""}`}
           onClick={() => setActiveTab("description")}
         >
           Description
-        </button>
-        <button
-          className={activeTab === "floorplan" ? "active" : ""}
+        </div>
+        <div
+          className={`tab ${activeTab === "floorplan" ? "active" : ""}`}
           onClick={() => setActiveTab("floorplan")}
         >
           Floor Plan
-        </button>
-        <button
-          className={activeTab === "map" ? "active" : ""}
+        </div>
+        <div
+          className={`tab ${activeTab === "map" ? "active" : ""}`}
           onClick={() => setActiveTab("map")}
         >
           Map
-        </button>
+        </div>
       </div>
 
-      <div className="tab-content">
-        <div className="tab-inner">
-          {activeTab === "description" && (
-            <>
-              {description.split("\n\n").map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </>
-          )}
+      {/* TAB CONTENT */}
+      <div className={`tab-content ${activeTab === "map" ? "map" : ""}`}>
+        {activeTab === "description" && (
+          <>
+            {description.split("\n\n").map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </>
+        )}
 
-          {activeTab === "floorplan" && (
-            <div className="floorplan">
-              {property.floorplan ? (
-                <img
-                  src={`/${property.floorplan}`}
-                  alt="Floor Plan"
-                  style={{ width: "100%", maxWidth: "800px" }}
-                />
-              ) : (
-                <p>No floor plan available.</p>
-              )}
-            </div>
-          )}
-          {activeTab === "map" && (
-            <div className="map-container" style={{ marginTop: "1rem" }}>
-              <iframe
-                title="Property Location Map"
-                src={mapSrc}
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
-            </div>
-          )}
-        </div>
+        {activeTab === "floorplan" && (
+          <div className="floorplan">
+            {floorplan ? (
+              <img
+                src={`/${floorplan}`}
+                alt="Floor Plan"
+                style={{ width: "100%", maxWidth: "800px" }}
+              />
+            ) : (
+              <p>No floor plan available.</p>
+            )}
+          </div>
+        )}
+
+        {activeTab === "map" && (
+          <div
+            className="map-container"
+            style={{ marginTop: "1rem", width: "100%" }}
+          >
+            <iframe
+              title="Property Location Map"
+              src={mapSrc}
+              width="100%"
+              height="500"
+              style={{ border: 0, borderRadius: "8px" }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
+        )}
       </div>
     </div>
   );

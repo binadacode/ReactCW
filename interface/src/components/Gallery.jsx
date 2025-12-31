@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import ResultList from "./ResultList";
 import SearchBar from "./SearchBar";
 import { searchProperties } from "../utils/searchProperties";
@@ -8,7 +8,7 @@ const Gallery = () => {
   const [results, setResults] = useState([]);
   const [favourites, setFavourites] = useState([]);
 
-  //drag-out helpers
+  // Drag-and-drop helpers
   const [draggedFavourite, setDraggedFavourite] = useState(null);
   const [droppedInsideFavs, setDroppedInsideFavs] = useState(false);
 
@@ -20,6 +20,12 @@ const Gallery = () => {
         setResults(data.properties);
       });
   }, []);
+
+  const propertyMap = useMemo(() => {
+    const map = new Map();
+    properties.forEach((p) => map.set(p.id, p));
+    return map;
+  }, [properties]);
 
   const handleSearch = (query) => {
     setResults(searchProperties(properties, query));
@@ -49,7 +55,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery-layout">
-      {/* MAIN CONTENT (LEFT) */}
+      {/* MAIN CONTENT */}
       <div className="gallery-main">
         <SearchBar onSearch={handleSearch} />
         <ResultList
@@ -59,7 +65,7 @@ const Gallery = () => {
         />
       </div>
 
-      {/* SIDEBAR (RIGHT) */}
+      {/* FAVOURITES SIDEBAR */}
       <aside
         className="favourites-sidebar"
         onDragOver={(e) => e.preventDefault()}
@@ -70,16 +76,20 @@ const Gallery = () => {
       >
         <h3>Favourites ({favourites.length})</h3>
 
+        {favourites.length === 0 && <p>Drag properties here ⭐</p>}
+
         {favourites.length > 0 && (
-          <button className="clear-favs-btn" onClick={clearFavourites}>
+          <button
+            type="button"
+            className="clear-favs-btn"
+            onClick={clearFavourites}
+          >
             Clear All
           </button>
         )}
 
-        {favourites.length === 0 && <p>Drag properties here ⭐</p>}
-
         {favourites.map((fid) => {
-          const prop = properties.find((p) => p.id === fid);
+          const prop = propertyMap.get(fid);
 
           return (
             <div
@@ -99,8 +109,12 @@ const Gallery = () => {
             >
               {prop?.type} – {prop?.location}
               <button
+                type="button"
                 className="remove-fav-btn"
-                onClick={() => removeFavourite(fid)}
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent drag interference
+                  removeFavourite(fid);
+                }}
               >
                 ❌
               </button>
