@@ -56,8 +56,12 @@ button {
   color: #fff;
   cursor: pointer;
   transition: all 0.25s ease;
+  background: linear-gradient(135deg, var(--btn-bg), var(--btn-hover));
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-button:hover { background-color: var(--btn-hover); }
+button:hover { 
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: scale(1.05); }
 
 /* ============================= */
 /* SEARCH FORM */
@@ -132,6 +136,7 @@ button:hover { background-color: var(--btn-hover); }
   position: sticky;
   top: 1.5rem;
   transition: all 0.2s ease;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
 }
 .favourites-sidebar h3 { text-align: center; margin-top: 0; color: var(--accent); }
 .favourites-sidebar.drag-over {
@@ -195,6 +200,8 @@ button:hover { background-color: var(--btn-hover); }
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
+.p
+
 /* ============================= */
 /* PROPERTY IMAGE CENTERING */
 .property-image-wrapper {
@@ -207,9 +214,10 @@ button:hover { background-color: var(--btn-hover); }
   border-bottom: 1px solid #eee;
 }
 .property-image {
-  width: auto;
-  height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 /* ============================= */
@@ -255,23 +263,19 @@ p {
 }
 
 .favourite-button {
-  font-size: 1.8rem;
-  color: #ccc;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+  background: none;    /* removes background */
+  border: none;        /* removes border */
+  padding: 0;          /* removes extra space */
+  font-size: 1.5rem;   /* adjust star size */
+  cursor: pointer;     /* pointer on hover */
+  color: #ccc;         /* default star color */
+  transition: color 0.3s;
 }
 
-.favourite-button:hover,
 .favourite-button.favourited {
-  color: var(--fav-star);
-  transform: scale(1.3);
-  text-shadow: 0 0 10px var(--fav-star);
+  color: gold;         /* filled star color when favourited */
 }
+
 
 
 /* ============================= */
