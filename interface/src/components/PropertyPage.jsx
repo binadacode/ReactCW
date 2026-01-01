@@ -47,7 +47,7 @@ const PropertyPage = () => {
       {/* PROPERTY INFO */}
       <div className="property-info">
         <h2>{type}</h2>
-        <p className="price">Price: LKR {price.toLocaleString()}</p>
+        <p className="price">Price: £{price.toLocaleString()}</p>
         <p className="location">Location: {location}</p>
       </div>
 

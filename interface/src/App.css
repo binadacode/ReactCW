@@ -77,6 +77,7 @@ button:hover { background-color: var(--btn-hover); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
+  column-gap: 4rem;
 }
 .form-group { display: flex; flex-direction: column; }
 .form-group label {
@@ -87,6 +88,7 @@ button:hover { background-color: var(--btn-hover); }
 .form-group input,
 .form-group select {
   padding: 0.6rem;
+
   border-radius: 6px;
   border: 1px solid #ccc;
   background: #fdfdfd;
@@ -176,6 +178,8 @@ button:hover { background-color: var(--btn-hover); }
 
 /* ============================= */
 /* PROPERTY CARD */
+/* ============================= */
+/* PROPERTY CARD */
 .property-card {
   background: var(--bg-card);
   border-radius: 10px;
@@ -190,6 +194,85 @@ button:hover { background-color: var(--btn-hover); }
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
+
+/* ============================= */
+/* PROPERTY IMAGE CENTERING */
+.property-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+}
+.property-image {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ============================= */
+/* PROPERTY INFO */
+.property-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* Keep headings and text normal */
+.property-info h3,
+.property-short-description,
+.property-price,
+.property-date,
+p {
+  margin: 0.3rem 0;
+}
+
+/* ============================= */
+/* PROPERTY ACTIONS (VIEW DETAILS + STAR) */
+.property-actions {
+  display: flex;
+  justify-content: space-between; /* left/right alignment */
+  align-items: center;
+  margin-top: auto; /* push actions to bottom of card */
+  width: 100%;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+}
+
+.details-link {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.details-link:hover {
+  text-decoration: underline;
+}
+
+.favourite-button {
+  font-size: 1.8rem;
+  color: #ccc;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.favourite-button:hover,
+.favourite-button.favourited {
+  color: var(--fav-star);
+  transform: scale(1.3);
+  text-shadow: 0 0 10px var(--fav-star);
+}
+
 
 /* ============================= */
 /* PROPERTY IMAGE CENTERING */
@@ -225,15 +308,31 @@ button:hover { background-color: var(--btn-hover); }
 .property-price {
   margin: 0.3rem 0;
 }
+/* ============================= */
+/* PROPERTY ACTIONS (VIEW DETAILS + STAR) */
 .property-actions {
-  margin-top: 1rem;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between; /* ensures left/right alignment */
+  align-items: center;
+  margin-top: auto; /* push actions to bottom of card */
   width: 100%;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+  gap: 2rem; /* adjustable spacing between link and star */
 }
+
+.details-link {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.details-link:hover {
+  text-decoration: underline;
+}
+
 .favourite-button {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #ccc;
   background: transparent;
   border: none;
@@ -243,12 +342,14 @@ button:hover { background-color: var(--btn-hover); }
   justify-content: center;
   transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
 }
+
 .favourite-button:hover,
 .favourite-button.favourited {
   color: var(--fav-star);
   transform: scale(1.5);
   text-shadow: 0 0 10px var(--fav-star);
 }
+
 
 /* ============================= */
 /* IMAGE GALLERY & VIEW ALL MODAL */
@@ -367,44 +468,57 @@ button:hover { background-color: var(--btn-hover); }
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.8); /* darker overlay for focus */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  padding: 2rem;
+  overflow-y: auto; /* allows scrolling if content is tall */
+  box-sizing: border-box;
 }
-.view-all-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
-  padding: 1rem;
-  background: rgba(255,255,255,0.95);
-  border-radius: 10px;
-}
-.view-all-image {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.view-all-image:hover { transform: scale(1.05); }
+
 .close-btn {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 1.5rem;
+  right: 1.5rem;
   background: #fff;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   z-index: 10000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.view-all-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* bigger min width */
+  gap: 1.5rem; /* spacing between images */
+  max-width: 90%;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+.view-all-image {
+  width: 100%;      /* fit the grid cell */
+  height: auto;     /* keep aspect ratio */
+  border-radius: 8px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.view-all-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
 /* ============================= */
