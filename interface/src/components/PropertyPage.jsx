@@ -1,25 +1,55 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import ImageGallery from "../components/ImageGallery";
+import { useState, useEffect, useMemo } from "react";
+import ImageGallery from "./ImageGallery";
+import FavouritesSidebar from "./FavouritesSidebar";
 
-const PropertyPage = () => {
+const PropertyPage = ({ favourites, setFavourites }) => {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
+  const [properties, setProperties] = useState([]);
   const [activeTab, setActiveTab] = useState("description");
   const [loading, setLoading] = useState(true);
+  const propertyId = id.toString();
+  const isFavourite = favourites.includes(propertyId);
 
   useEffect(() => {
     fetch("/properties.json")
       .then((res) => res.json())
       .then((data) => {
+        setProperties(data.properties);
         const foundProperty = data.properties.find(
           (prop) => prop.id.toString() === id
         );
         setProperty(foundProperty);
       })
-      .catch((err) => console.error("Error fetching property data:", err))
+      .catch(console.error)
       .finally(() => setLoading(false));
   }, [id]);
+
+  const propertyMap = useMemo(() => {
+    const map = new Map();
+    properties.forEach((p) => map.set(p.id.toString(), p));
+    return map;
+  }, [properties]);
+
+  const toggleFavourite = () => {
+    setFavourites((prev) =>
+      prev.includes(propertyId)
+        ? prev.filter((f) => f !== propertyId)
+        : [...prev, propertyId]
+    );
+  };
+
+  const removeFavourite = (fid) =>
+    setFavourites((prev) => prev.filter((f) => f !== fid));
+  const clearFavourites = () => setFavourites([]);
+
+  // drag-out removal
+  const handleRemoveDrop = (e) => {
+    e.preventDefault();
+    const removeId = e.dataTransfer.getData("removeId");
+    if (removeId) removeFavourite(removeId);
+  };
 
   if (loading) return <p>Loading property...</p>;
   if (!property) return <p>Property not found.</p>;
@@ -32,60 +62,59 @@ const PropertyPage = () => {
     pictures = [],
     floorplan,
   } = property;
-
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     location
   )}&output=embed`;
 
   return (
-    <div className="property-page">
-      {/* GALLERY */}
-      <div className="gallery">
+    <div className="property-page-layout" style={{ display: "flex" }}>
+      <div
+        className="property-main"
+        style={{ flex: 1 }}
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={handleRemoveDrop}
+      >
         <ImageGallery images={pictures} />
-      </div>
+        <div className="property-info">
+          <h2>{type}</h2>
 
-      {/* PROPERTY INFO */}
-      <div className="property-info">
-        <h2>{type}</h2>
-        <p className="price">Price: £{price.toLocaleString()}</p>
-        <p className="location">Location: {location}</p>
-      </div>
+          <button
+            className={`favourite-btn ${isFavourite ? "favourited" : ""}`}
+            onClick={toggleFavourite}
+          >
+            {isFavourite ? "★ Remove from favourites " : "☆ Add to Favourites"}
+          </button>
 
-      {/* TABS */}
-      <div className="tabs-container">
-        <div
-          className={`tab ${activeTab === "description" ? "active" : ""}`}
-          onClick={() => setActiveTab("description")}
-        >
-          Description
+          <p className="price">Price: £{price.toLocaleString()}</p>
+          <p className="location">Location: {location}</p>
         </div>
-        <div
-          className={`tab ${activeTab === "floorplan" ? "active" : ""}`}
-          onClick={() => setActiveTab("floorplan")}
-        >
-          Floor Plan
-        </div>
-        <div
-          className={`tab ${activeTab === "map" ? "active" : ""}`}
-          onClick={() => setActiveTab("map")}
-        >
-          Map
-        </div>
-      </div>
 
-      {/* TAB CONTENT */}
-      <div className={`tab-content ${activeTab === "map" ? "map" : ""}`}>
-        {activeTab === "description" && (
-          <>
-            {description.split("\n\n").map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </>
-        )}
+        <div className="tabs-container">
+          <div
+            className={`tab ${activeTab === "description" ? "active" : ""}`}
+            onClick={() => setActiveTab("description")}
+          >
+            Description
+          </div>
+          <div
+            className={`tab ${activeTab === "floorplan" ? "active" : ""}`}
+            onClick={() => setActiveTab("floorplan")}
+          >
+            Floor Plan
+          </div>
+          <div
+            className={`tab ${activeTab === "map" ? "active" : ""}`}
+            onClick={() => setActiveTab("map")}
+          >
+            Map
+          </div>
+        </div>
 
-        {activeTab === "floorplan" && (
-          <div className="floorplan">
-            {floorplan ? (
+        <div className={`tab-content ${activeTab === "map" ? "map" : ""}`}>
+          {activeTab === "description" &&
+            description.split("\n\n").map((p, i) => <p key={i}>{p}</p>)}
+          {activeTab === "floorplan" &&
+            (floorplan ? (
               <img
                 src={`/${floorplan}`}
                 alt="Floor Plan"
@@ -93,15 +122,8 @@ const PropertyPage = () => {
               />
             ) : (
               <p>No floor plan available.</p>
-            )}
-          </div>
-        )}
-
-        {activeTab === "map" && (
-          <div
-            className="map-container"
-            style={{ marginTop: "1rem", width: "100%" }}
-          >
+            ))}
+          {activeTab === "map" && (
             <iframe
               title="Property Location Map"
               src={mapSrc}
@@ -110,10 +132,18 @@ const PropertyPage = () => {
               style={{ border: 0, borderRadius: "8px" }}
               allowFullScreen=""
               loading="lazy"
-            ></iframe>
-          </div>
-        )}
+            />
+          )}
+        </div>
       </div>
+
+      <FavouritesSidebar
+        favourites={favourites}
+        setFavourites={setFavourites}
+        propertyMap={propertyMap}
+        removeFavourite={removeFavourite}
+        clearFavourites={clearFavourites}
+      />
     </div>
   );
 };

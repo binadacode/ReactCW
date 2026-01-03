@@ -5,7 +5,7 @@ import PropertyPage from "./components/PropertyPage";
 import "./App.css";
 
 function App() {
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState([]); // global shared state
 
   return (
     <Routes>
@@ -15,7 +15,6 @@ function App() {
           <Gallery favourites={favourites} setFavourites={setFavourites} />
         }
       />
-
       <Route
         path="/property/:id"
         element={

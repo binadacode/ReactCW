@@ -1,15 +1,12 @@
 import { useEffect, useState, useMemo } from "react";
 import ResultList from "./ResultList";
 import SearchBar from "./SearchBar";
+import FavouritesSidebar from "./FavouritesSidebar";
 import { searchProperties } from "../utils/searchProperties";
 
 const Gallery = ({ favourites, setFavourites }) => {
   const [properties, setProperties] = useState([]);
   const [results, setResults] = useState([]);
-
-  // Drag-and-drop helpers
-  const [draggedFavourite, setDraggedFavourite] = useState(null);
-  const [droppedInsideFavs, setDroppedInsideFavs] = useState(false);
 
   useEffect(() => {
     fetch("/properties.json")
@@ -22,39 +19,26 @@ const Gallery = ({ favourites, setFavourites }) => {
 
   const propertyMap = useMemo(() => {
     const map = new Map();
-    properties.forEach((p) => map.set(p.id, p));
+    properties.forEach((p) => map.set(p.id.toString(), p));
     return map;
   }, [properties]);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query) =>
     setResults(searchProperties(properties, query));
-  };
 
   const toggleFavourite = (id) => {
+    const strId = id.toString();
     setFavourites((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+      prev.includes(strId) ? prev.filter((f) => f !== strId) : [...prev, strId]
     );
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const id = e.dataTransfer.getData("propertyId");
-    if (!favourites.includes(id)) {
-      setFavourites((prev) => [...prev, id]);
-    }
-  };
-
-  const removeFavourite = (id) => {
+  const removeFavourite = (id) =>
     setFavourites((prev) => prev.filter((f) => f !== id));
-  };
-
-  const clearFavourites = () => {
-    setFavourites([]);
-  };
+  const clearFavourites = () => setFavourites([]);
 
   return (
     <div className="gallery-layout">
-      {/* MAIN CONTENT */}
       <div className="gallery-main">
         <SearchBar onSearch={handleSearch} />
         <ResultList
@@ -64,63 +48,13 @@ const Gallery = ({ favourites, setFavourites }) => {
         />
       </div>
 
-      {/* FAVOURITES SIDEBAR */}
-      <aside
-        className="favourites-sidebar"
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) => {
-          handleDrop(e);
-          setDroppedInsideFavs(true);
-        }}
-      >
-        <h3>Favourites ({favourites.length})</h3>
-
-        {favourites.length === 0 && <p>Drag properties here ⭐</p>}
-
-        {favourites.length > 0 && (
-          <button
-            type="button"
-            className="clear-favs-btn"
-            onClick={clearFavourites}
-          >
-            Clear All
-          </button>
-        )}
-
-        {favourites.map((fid) => {
-          const prop = propertyMap.get(fid);
-
-          return (
-            <div
-              key={fid}
-              className="favourite-item"
-              draggable
-              onDragStart={() => {
-                setDraggedFavourite(fid);
-                setDroppedInsideFavs(false);
-              }}
-              onDragEnd={() => {
-                if (!droppedInsideFavs) {
-                  removeFavourite(draggedFavourite);
-                }
-                setDraggedFavourite(null);
-              }}
-            >
-              {prop?.type} – {prop?.location}
-              <button
-                type="button"
-                className="remove-fav-btn"
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent drag interference
-                  removeFavourite(fid);
-                }}
-              >
-                ❌
-              </button>
-            </div>
-          );
-        })}
-      </aside>
+      <FavouritesSidebar
+        favourites={favourites}
+        setFavourites={setFavourites}
+        propertyMap={propertyMap}
+        removeFavourite={removeFavourite}
+        clearFavourites={clearFavourites}
+      />
     </div>
   );
 };
