@@ -3,10 +3,9 @@ import ResultList from "./ResultList";
 import SearchBar from "./SearchBar";
 import { searchProperties } from "../utils/searchProperties";
 
-const Gallery = () => {
+const Gallery = ({ favourites, setFavourites }) => {
   const [properties, setProperties] = useState([]);
   const [results, setResults] = useState([]);
-  const [favourites, setFavourites] = useState([]);
 
   // Drag-and-drop helpers
   const [draggedFavourite, setDraggedFavourite] = useState(null);
