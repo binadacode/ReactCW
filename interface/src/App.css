@@ -181,9 +181,7 @@ button:hover {
   align-items: stretch;
 }
 
-/* ============================= */
-/* PROPERTY CARD */
-/* ============================= */
+
 /* PROPERTY CARD */
 .property-card {
   background: var(--bg-card);
@@ -200,81 +198,19 @@ button:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.p
 
-/* ============================= */
-/* PROPERTY IMAGE CENTERING */
-.property-image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 180px;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid #eee;
-}
-.property-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
 
-/* ============================= */
-/* PROPERTY INFO */
-.property-info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 1rem;
-  color: var(--text-primary);
-  line-height: 1.2;
-}
 
-/* Keep headings and text normal */
-.property-info h3,
-.property-short-description,
-.property-price,
-.property-date,
-p {
-  margin: 0.3rem 0;
-}
 
-/* ============================= */
-/* PROPERTY ACTIONS (VIEW DETAILS + STAR) */
-.property-actions {
-  display: flex;
-  justify-content: space-between; /* left/right alignment */
-  align-items: center;
-  margin-top: auto; /* push actions to bottom of card */
-  width: 100%;
-  padding-top: 0.5rem;
-  border-top: 1px solid #eee;
-}
 
-.details-link {
-  text-decoration: none;
-  color: var(--accent);
-  font-weight: 500;
-}
 
-.details-link:hover {
-  text-decoration: underline;
-}
 
-.favourite-button {
-  background: none;    /* removes background */
-  border: none;        /* removes border */
-  padding: 0;          /* removes extra space */
-  font-size: 1.5rem;   /* adjust star size */
-  cursor: pointer;     /* pointer on hover */
-  color: #ccc;         /* default star color */
-  transition: color 0.3s;
-}
 
-.favourite-button.favourited {
-  color: gold;         /* filled star color when favourited */
-}
+
+
+
+
+
 
 
 
