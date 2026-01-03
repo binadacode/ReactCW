@@ -27,7 +27,11 @@ const FavouritesSidebar = ({
     >
       <h3>Favourites ({favs.length})</h3>
 
-      {favs.length === 0 && <p>Add properties here ⭐</p>}
+      {favs.length === 0 && (
+        <p>
+          <i>Add properties here ⭐</i>
+        </p>
+      )}
 
       {favs.length > 0 && (
         <button className="clear-favs-btn" onClick={clearFavourites}>
